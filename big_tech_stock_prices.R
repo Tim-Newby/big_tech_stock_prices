@@ -32,7 +32,7 @@ label_info <- filter(year_close, year > 2018) |>
 
 # plot
 ggplot(
-  filter(year_close, year > 2018), aes(x = year, y = v, fill = fct_reorder2(stock_symbol, year, v))) + 
+  filter(year_close, year > 2018), aes(x = year, y = v, group = fct_reorder2(stock_symbol, year, v), fill = v > first(v) - .0001)) + 
     geom_col(position = "dodge", show.legend = FALSE) +
     geom_text(data = label_info, aes(x = year, y = 40, label = stock_symbol, group = fct_reorder2(stock_symbol, year, v)),
     position = position_dodge(width = 0.9), angle = 90, size = 2, hjust = "center"
